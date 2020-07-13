@@ -13,7 +13,7 @@ $factory->define(Report::class, function (Faker $faker) {
 		'category_id' => function () {
             return factory(App\Category::Class)->create()->id;
         },
-        'user_id' => $faker->numberBetween(1,11),
+        'user_id' =>1,
 		'MeasurementInstrument' => null,
 		'AssessmentMethodDetail' => null,
 		'MaxScore' => null,

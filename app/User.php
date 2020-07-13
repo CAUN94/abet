@@ -65,7 +65,7 @@ class User extends Authenticatable
             ->whereNull('AssessmentMethodDetail')
             ->whereNull('MaxScore')
             ->whereNull('MinScore')
-            ->groupBy('course_id')
+            ->distinct('course_id')
             ->get();
     }
 
@@ -83,7 +83,7 @@ class User extends Authenticatable
         ->whereNull('ImproceScores')
         ->whereNull('Expected')
         ->whereNull('Proposal')
-        ->groupBy('course_id')
+        ->distinct('course_id')
         ->get();
     }
 
@@ -101,7 +101,7 @@ class User extends Authenticatable
         ->whereNotNull('ImproceScores')
         ->whereNotNull('Expected')
         ->whereNotNull('Proposal')
-        ->groupBy('course_id')
+        ->distinct('course_id')
         ->get();
     }
 
