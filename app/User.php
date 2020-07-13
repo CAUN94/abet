@@ -45,6 +45,15 @@ class User extends Authenticatable
 
         return "{$this->name} {$this->last_name}";
     }
+    public function roles()
+    {
+        return $this->hasOne('App\Role');
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles()->where('role', 'admin')->exists();
+    }
 
     public function getReports()
     {
