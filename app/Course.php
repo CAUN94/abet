@@ -11,6 +11,12 @@ class Course extends Model
     	return $this->hasMany('App\Report')->get();
     }
 
+    public function getCategory()
+    {
+        return $this->belongsToMany('App\Category','reports','course_id','category_id')
+            ->get();
+    }
+
     public function getCategoryStart()
     {
         return $this->belongsToMany('App\Category','reports','course_id','category_id')

@@ -17,6 +17,13 @@ Route::get('/', function () {
     return redirect('home');
 });
 
+Route::get('/admin', 'AdminReportController@index');
+Route::get('/admin/create', 'AdminReportController@create');
+Route::get('/admin/{singular}', 'AdminReportController@show');
+Route::post('/admin', 'PagesController@store');
+Route::get('/admin/{singular}/edit', 'AdminReportController@edit');
+Route::patch('/admin/{singular}', 'AdminReportController@update');
+Route::delete('/admin/{singular})', 'AdminReportController@delete');
 
 Route::get('/report/{report}', 'StartReportController@edit');
 Route::patch('/report/{report}', 'StartReportController@update');
@@ -33,7 +40,3 @@ Route::get('/categories/{category}', 'CategoryController@show')->name('category'
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::put('/profile', 'ProfileController@update')->name('profile.update');
-
-Route::get('/about', function () {
-    return view('about');
-})->name('about');

@@ -4,13 +4,15 @@
 	    <span>{{ __('Admin') }}</span>
 	</a>
 	<li class="nav-item">
-	    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Line" aria-expanded="true" aria-controls="Line">
+	    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Abstract" aria-expanded="true" aria-controls="Abstract">
 	      <i class="fas fa-clipboard"></i>
-	      <span>Line</span>
+	      <span>Summary</span>
 	    </a>
-	    <div id="Line" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+	    <div id="Abstract" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 	      <div class="bg-white py-2 collapse-inner rounded">
-			<a class="collapse-item" href="#">Line</a>
+			<a class="collapse-item" href="#">Reports Status</a>
+			<a class="collapse-item" href="#">Send Mail</a>
+			<a class="collapse-item" href="/admin">See Course Resume</a>
 	      </div>
 	    </div>
      </li>

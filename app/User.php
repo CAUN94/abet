@@ -55,6 +55,14 @@ class User extends Authenticatable
         return $this->roles()->where('role', 'admin')->exists();
     }
 
+    public function allReports()
+    {
+        if(!$this->isAdmin()){
+            return false;
+        }
+        return Report::all();
+    }
+
     public function getReports()
     {
         return $this->hasMany('App\Report')->get();
