@@ -28,7 +28,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" name="name" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required autofocus>
+                                        <input type="text" class="form-control form-control-user" name="first_name" placeholder="{{ __('First Name') }}" value="{{ old('first_name') }}" required autofocus>
                                     </div>
 
                                     <div class="form-group">

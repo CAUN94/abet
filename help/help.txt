@@ -1,0 +1,1 @@
+$User = factory(App\User::class);

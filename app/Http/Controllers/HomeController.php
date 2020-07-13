@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,6 @@ class HomeController extends Controller
 
         $widget = [
             'users' => $users,
-            //...
         ];
 
         return view('home', compact('widget'));

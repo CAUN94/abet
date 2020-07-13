@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'password',
     ];
 
     /**
@@ -45,4 +45,68 @@ class User extends Authenticatable
 
         return "{$this->name} {$this->last_name}";
     }
+
+    public function getReports()
+    {
+        return $this->hasMany('App\Report')->get();
+    }
+
+    public function getCategory()
+    {
+        return $this->belongsToMany('App\Category','reports','user_id','category_id')
+            ->orderBy('name', 'asc')
+            ->get();
+    }
+
+    public function getNotStartedReports()
+    {
+        return $this->hasMany('App\Report')
+            ->whereNull('MeasurementInstrument')
+            ->whereNull('AssessmentMethodDetail')
+            ->whereNull('MaxScore')
+            ->whereNull('MinScore')
+            ->groupBy('course_id')
+            ->get();
+    }
+
+    public function getStartedReports()
+    {
+        return $this->hasMany('App\Report')
+        ->whereNotNull('MeasurementInstrument')
+        ->whereNotNull('AssessmentMethodDetail')
+        ->whereNotNull('MaxScore')
+        ->whereNotNull('MinScore')
+        ->whereNull('ProfessorTeam')
+        ->whereNull('Result')
+        ->whereNull('PurposeMeasure')
+        ->whereNull('Results')
+        ->whereNull('ImproceScores')
+        ->whereNull('Expected')
+        ->whereNull('Proposal')
+        ->groupBy('course_id')
+        ->get();
+    }
+
+    public function getFinishReports()
+    {
+        return $this->hasMany('App\Report')
+        ->whereNotNull('MeasurementInstrument')
+        ->whereNotNull('AssessmentMethodDetail')
+        ->whereNotNull('MaxScore')
+        ->whereNotNull('MinScore')
+        ->whereNotNull('ProfessorTeam')
+        ->whereNotNull('Result')
+        ->whereNotNull('PurposeMeasure')
+        ->whereNotNull('Results')
+        ->whereNotNull('ImproceScores')
+        ->whereNotNull('Expected')
+        ->whereNotNull('Proposal')
+        ->groupBy('course_id')
+        ->get();
+    }
+
+    public function name() {
+        return $this->first_name." ".$this->last_name;
+    }
+
 }
