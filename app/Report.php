@@ -11,6 +11,33 @@ class Report extends Model
     	return $this->belongsTo('App\Course')->first();
     }
 
+    public function Status()
+    {
+        if(isset($this->MeasurementInstrument) && isset($this->ProfessorTeam)){
+            return 'success';
+        }
+
+        if(isset($this->MeasurementInstrument) && !isset($this->ProfessorTeam)){
+            return 'danger';
+        }
+
+        if(!isset($this->MeasurementInstrument) && !isset($this->ProfessorTeam)){
+            return 'danger';
+        }
+    }
+
+    public static function CountAllReports() {
+        return Report::all()->count();
+    }
+
+    public static function getcomplete() {
+        return Report::whereNotNull('MeasurementInstrument')->whereNotNull('ProfessorTeam')->get()->count();
+    }
+
+    public static function getIncomplete() {
+        return Report::whereNull('ProfessorTeam')->get()->count();
+    }
+
     public function User()
     {
     	return $this->belongsTo('App\User')->get();

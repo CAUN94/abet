@@ -26,7 +26,7 @@ class AdminReportController extends Controller
     public function index()
     {
         if(Auth::user()->isAdmin()){
-            $reports = Report::all();
+            $reports = Report::orderby('course_id')->orderBy('category_id')->get();
             return view('admin.index',compact('reports'));
         }
 
@@ -62,7 +62,7 @@ class AdminReportController extends Controller
      */
     public function show(Report $report)
     {
-
+        return $report;
     }
 
     /**

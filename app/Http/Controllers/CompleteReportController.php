@@ -74,6 +74,16 @@ class CompleteReportController extends Controller
      */
     public function update(Request $request, Report $report)
     {
+        $request->validate([
+            'ProfessorTeam' => 'required',
+            'result' => 'required',
+            'purposemeasure' => 'required',
+            'results' => 'required',
+            'ImproceScores' => 'required',
+            'expected' => 'required',
+            'proposal' => 'required'
+        ]);
+
         $report->ProfessorTeam = $request->ProfessorTeam;
         $report->Result = $request->result;
         $report->PurposeMeasure = $request->purposemeasure;

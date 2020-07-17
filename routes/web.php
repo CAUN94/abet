@@ -19,11 +19,11 @@ Route::get('/', function () {
 
 Route::get('/admin', 'AdminReportController@index');
 Route::get('/admin/create', 'AdminReportController@create');
-Route::get('/admin/{singular}', 'AdminReportController@show');
+Route::get('/admin/{report}', 'AdminReportController@show');
 Route::post('/admin', 'PagesController@store');
-Route::get('/admin/{singular}/edit', 'AdminReportController@edit');
-Route::patch('/admin/{singular}', 'AdminReportController@update');
-Route::delete('/admin/{singular})', 'AdminReportController@delete');
+Route::get('/admin/{report}/edit', 'AdminReportController@edit');
+Route::patch('/admin/{report}', 'AdminReportController@update');
+Route::delete('/admin/{report})', 'AdminReportController@delete');
 
 Route::get('/report/{report}', 'StartReportController@edit');
 Route::patch('/report/{report}', 'StartReportController@update');

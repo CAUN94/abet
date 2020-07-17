@@ -23,7 +23,17 @@
                   <form method="POST" action="/report/{{$report->id}}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
-
+                    @if ($errors->any())
+                        <div class="form-group">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
                     <div class="form-row">
                         <div class="col">
                           <input type="text" name="measurement_instrument" class="form-control" placeholder="MEASUREMENT INSTRUMENT">

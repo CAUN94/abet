@@ -80,6 +80,14 @@ class StartReportController extends Controller
      */
     public function update(Request $request, Report $report)
     {
+        $request->validate([
+            'measurement_instrument' => 'required',
+            'assessment_method_detail' => 'required',
+            'maxscore' => 'required',
+            'minscore' => 'required',
+            'excel' => 'required'
+        ]);
+
         $data = Excel::toArray(new StudentImport(), $request->file('excel'));
 
         foreach ($data[0] as $key => $value) {

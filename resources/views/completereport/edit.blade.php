@@ -23,10 +23,21 @@
                   <form method="POST" action="/reportprogress/{{$report->id}}">
                     @csrf
                     @method('PATCH')
-
+                      @if ($errors->any())
+                          <div class="form-group">
+                              <div class="alert alert-danger">
+                                  <ul>
+                                      @foreach ($errors->all() as $error)
+                                          <li>{{ $error }}</li>
+                                      @endforeach
+                                  </ul>
+                              </div>
+                          </div>
+                      @endif
                     <div class="form-row">
                         <div class="col">
-                          <input type="text" name="ProfessorTeam" class="form-control" placeholder="Professor Team">
+                          <strong>Professor Team</strong>
+                          <input type="text" name="ProfessorTeam" class="form-control" placeholder="Name 1,Name 2,Name 3">
                         </div>
                     </div>
                     <hr>
@@ -49,20 +60,23 @@
                     <hr>
                     <div class="form-row">
                       <div class="col">
-                            <textarea class="form-control" name="purposemeasure" id="PurposeMeasure" rows="3">What is the purpose of measure? Specify at a course level and the expected results. Use the Performance Indicator as base.</textarea>
-                        </div>
+                         <strong> What is the purpose of measure? Specify at a course level and the expected results. Use the Performance Indicator as base.</strong>
+                          <textarea class="form-control" name="purposemeasure" id="PurposeMeasure" rows="3"></textarea>
+                      </div>
                     </div>
                     <hr>
                      <div class="form-row">
                       <div class="col">
-                            <textarea class="form-control" name="results" id="Results" rows="3">Why are the results better or worse? After evaluating the obtained results, explain why the results are different from the previous semester</textarea>
-                        </div>
+                        <strong>Why are the results better or worse? After evaluating the obtained results, explain why the results are different from the previous semester</strong>
+                        <textarea class="form-control" name="results" id="Results" rows="3"></textarea>
+                      </div>
                     </div>
                     <hr>
                     <div class="form-row">
                       <div class="col">
-                            <textarea class="form-control" name="ImproceScores" id="ImproceScores" rows="3">How will you improve scores on this measure? After evaluating the obtained results, What actions should be taken to improve these results in the future?</textarea>
-                        </div>
+                        <strong>How will you improve scores on this measure? After evaluating the obtained results, What actions should be taken to improve these results in the future?</strong>
+                        <textarea class="form-control" name="ImproceScores" id="ImproceScores" rows="3"></textarea>
+                      </div>
                     </div>
                     <hr>
                     <button type="submit" class="btn btn-primary">Submit</button>
