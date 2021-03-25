@@ -75,7 +75,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><b>Semester:</b> {{$course->year}}-{{$course->semester}}</li>
                         <li class="list-group-item">Course: {{$course->name}}</li>
-                        <li class="list-group-item">Coordinator: {{Auth::user()->name()}}</li>
+                        <li class="list-group-item">Coordinator: {{$report->User()->name()}}</li>
                         <li class="list-group-item">Indicator: {{$report->Category()->name}} {{$report->Category()->description}}</li>
                     </ul>
                 </div>

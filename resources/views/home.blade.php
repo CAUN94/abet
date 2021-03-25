@@ -18,7 +18,7 @@
                     <!-- Nav Item - Pages Collapse Menu -->
                     @foreach(Auth::user()->getNotStartedReports() as $report)
                         @foreach($report->Course()->getCategoryStart() as $category)
-                            <div class="col-xl-4 col-md-4 mb-4">
+                            <div class="col-xl-6 col-md-4 mb-4">
                               <div class="card border-left-danger shadow h-100 py-2">
                                 <a href="/report/{{$report->id}}">
                                     <div class="card-body">
@@ -46,7 +46,7 @@
                 <div class="row">
                     @foreach(Auth::user()->getStartedReports() as $report)
                             @foreach($report->Course()->getCategoryProgress() as $category)
-                                <div class="col-xl-4 col-md-4 mb-4">
+                                <div class="col-xl-6 col-md-4 mb-4">
                                   <div class="card border-left-warning shadow h-100 py-2">
                                     <a href="/reportprogress/{{$report->id}}">
                                         <div class="card-body">
@@ -73,7 +73,7 @@
                 <div class="row">
                     @foreach(Auth::user()->getFinishReports() as $report)
                         @foreach($report->Course()->getCategoryDone() as $category)
-                            <div class="col-xl-4 col-md-4 mb-4">
+                            <div class="col-xl-6 col-md-4 mb-4">
                               <div class="card border-left-success shadow h-100 py-2">
                                 <a href="/finishprogress/{{$report->id}}">
                                     <div class="card-body">

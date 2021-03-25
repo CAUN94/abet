@@ -40,7 +40,7 @@ class Report extends Model
 
     public function User()
     {
-    	return $this->belongsTo('App\User')->get();
+    	return $this->belongsTo('App\User')->first();
     }
 
     public function Category()
@@ -55,6 +55,8 @@ class Report extends Model
 
     public function Mastery($min, $max ,$total)
     {
+        if($total == 0)
+            return 0;
         $min_score = (($max-$min)*0.2)+($max-$min)*0.3+($max-$min)*0.2+$min;
         $max_score = (($max-$min)*0.2)+($max-$min)*0.3+($max-$min)*0.2+($max-$min)*0.3+$min;
         $count = $this->hasMany('App\Student')->whereBetween('score', [$min_score , $max_score])->count();
@@ -63,6 +65,8 @@ class Report extends Model
 
     public function Proficient($min, $max ,$total)
     {
+        if($total == 0)
+            return 0;
         $min_score = (($max-$min)*0.2)+($max-$min)*0.3+$min;
         $max_score = (($max-$min)*0.2)+($max-$min)*0.3+($max-$min)*0.2+$min;
         $count = $this->hasMany('App\Student')->whereBetween('score', [$min_score , $max_score])->count();
@@ -71,6 +75,8 @@ class Report extends Model
 
     public function Development($min, $max ,$total)
     {
+        if($total == 0)
+            return 0;
         $min_score = (($max-$min)*0.2)+$min;
         $max_score = (($max-$min)*0.2)+($max-$min)*0.3+$min;
         $count = $this->hasMany('App\Student')->whereBetween('score', [$min_score , $max_score])->count();
@@ -79,6 +85,8 @@ class Report extends Model
 
     public function Beginner($min, $max ,$total)
     {
+        if($total == 0)
+            return 0;
         $max_score = (($max-$min)*0.2)+$min;
         $count = $this->hasMany('App\Student')->whereBetween('score', [$min, $max_score])->count();
         return round($count*100/$total);

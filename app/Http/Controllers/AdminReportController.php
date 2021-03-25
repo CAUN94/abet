@@ -62,7 +62,7 @@ class AdminReportController extends Controller
      */
     public function show(Report $report)
     {
-        return $report;
+        return view('admin.show',compact('report'));
     }
 
     /**
