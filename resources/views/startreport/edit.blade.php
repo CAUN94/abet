@@ -182,7 +182,7 @@
             var pp = document.getElementById("pp").value;
             var pm = document.getElementById("pm").value;
             var max = document.getElementById("max").value;
-            document.getElementById("min-b").innerHTML = min*pb/100;
+            document.getElementById("min-b").innerHTML = min;
             document.getElementById("max-b").innerHTML = max*pb/100;
             document.getElementById("min-d").innerHTML = max*pb/100;
             document.getElementById("max-d").innerHTML = (max*pb/100) + (max*pd/100);
