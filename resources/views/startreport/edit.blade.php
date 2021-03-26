@@ -162,7 +162,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><b>Semestre:</b> {{$course->year}}-{{$course->semester}}</li>
                         <li class="list-group-item">Curso: {{$course->name}}</li>
-                        <li class="list-group-item">Cordinador: {{$report->User()->name()}}</li>
+                        <li class="list-group-item">Coordinador: {{$report->User()->name()}}</li>
                         <li class="list-group-item">Indicador: {{$report->Category()->name}} {{$report->Category()->description}}</li>
                     </ul>
                 </div>
@@ -176,22 +176,22 @@
         }
 
         function myAll() {
-            var min = document.getElementById("min").value;
-            var pb = document.getElementById("pb").value;
-            var pd = document.getElementById("pd").value;
-            var pp = document.getElementById("pp").value;
-            var pm = document.getElementById("pm").value;
-            var max = document.getElementById("max").value;
-            document.getElementById("min-b").innerHTML = min;
-            document.getElementById("max-b").innerHTML = max*pb/100;
-            document.getElementById("min-d").innerHTML = max*pb/100;
-            document.getElementById("max-d").innerHTML = (max*pb/100) + (max*pd/100);
-            document.getElementById("min-p").innerHTML = (max*pb/100) + (max*pd/100);
-            document.getElementById("max-p").innerHTML = (max*pb/100) + (max*pd/100) + (max*pp/100);
-            document.getElementById("min-m").innerHTML = (max*pb/100) + (max*pd/100) + (max*pp/100);
-            document.getElementById("max-m").innerHTML = (max*pb/100) + (max*pd/100) + (max*pp/100) + (max*pm/100);
+            var min = parseInt(document.getElementById("min").value);
+            var pb = parseInt(document.getElementById("pb").value);
+            var pd = parseInt(document.getElementById("pd").value);
+            var pp = parseInt(document.getElementById("pp").value);
+            var pm = parseInt(document.getElementById("pm").value);
+            var max = parseInt(document.getElementById("max").value);
+            document.getElementById("min-b").innerHTML = min ;
+            document.getElementById("max-b").innerHTML = min + ((max - min)*(pb/100));
+            document.getElementById("min-d").innerHTML = min + ((max - min)*(pb/100));
+            document.getElementById("max-d").innerHTML = min + ((max - min)*(pb/100)) +  ((max - min)*(pd/100));
+            document.getElementById("min-p").innerHTML = min + ((max - min)*(pb/100)) +  ((max - min)*(pd/100));
+            document.getElementById("max-p").innerHTML = min + ((max - min)*(pb/100)) +  ((max - min)*(pd/100)) +  ((max - min)*(pp/100));
+            document.getElementById("min-m").innerHTML = min + ((max - min)*(pb/100)) +  ((max - min)*(pd/100)) +  ((max - min)*(pp/100));
+            document.getElementById("max-m").innerHTML = max;
 
-            document.getElementById("total").innerHTML = parseInt(pb) + parseInt(pd) + parseInt(pp) + parseInt(pm);
+            document.getElementById("total").innerHTML = pb + pd + pp + pm;
 
         }
     </script>
