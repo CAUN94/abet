@@ -34,11 +34,11 @@
                                 </div> --}}
                             </div>
                             <div>
-                                <div class="small text-gray-500">Reports</div>
+                                <div class="small text-gray-500">Reportes</div>
                                 {{-- {{Auth::user()->getNotStartedReports() + Auth::user()->getStartedReports()->count()}} --}}
                             </div>
                         </a>
-                        <a class="dropdown-item text-center small text-gray-500" href="/">Show Dashboard</a>
+                        <a class="dropdown-item text-center small text-gray-500" href="/">Inicio</a>
                     </div>
                 </li>
 

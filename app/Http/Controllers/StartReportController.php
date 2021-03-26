@@ -85,6 +85,10 @@ class StartReportController extends Controller
             'assessment_method_detail' => 'required',
             'maxscore' => 'required',
             'minscore' => 'required',
+            'pb' => 'required',
+            'pd' => 'required',
+            'pp' => 'required',
+            'pm' => 'required',
             'excel' => 'required'
         ]);
 
@@ -104,6 +108,10 @@ class StartReportController extends Controller
         $report->AssessmentMethodDetail = $request->assessment_method_detail;
         $report->MaxScore = $request->maxscore;
         $report->MinScore = $request->minscore;
+        $report->pb = $request->pb;
+        $report->pd = $request->pd;
+        $report->pp = $request->pp;
+        $report->pm = $request->pm;
         $report->save();
         return redirect('/reportprogress/'.$report->id);
     }

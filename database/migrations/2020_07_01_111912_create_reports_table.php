@@ -19,10 +19,10 @@ class CreateReportsTable extends Migration
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('category_id');
 
-            $table->string('MeasurementInstrument')->nullable();;
-            $table->string('AssessmentMethodDetail')->nullable();;
-            $table->integer('MinScore')->nullable();;
-            $table->integer('MaxScore')->nullable();;
+            $table->string('MeasurementInstrument')->nullable();
+            $table->string('AssessmentMethodDetail')->nullable();
+            $table->integer('MinScore')->nullable();
+            $table->integer('MaxScore')->nullable();
             $table->string('ProfessorTeam')->nullable();
             $table->string('Result')->nullable();
             $table->mediumText('PurposeMeasure')->nullable();
