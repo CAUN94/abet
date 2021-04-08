@@ -20,13 +20,13 @@
     <li class="nav-item {{ Nav::isRoute('home') }}">
         <a class="nav-link" href="{{ route('home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>{{ __('Formularios') }}</span>
+            <span>{{ __('Forms') }}</span>
         </a>
     </li>
 
     @if(count(Auth::user()->getNotStartedReports())>0)
         <div class="sidebar-heading">
-            No Iniciados
+            No Started
         </div>
     @endif
     <!-- Nav Item - Pages Collapse Menu -->
@@ -39,7 +39,7 @@
             <div id="NTR{{$report->id}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
                 @foreach($report->Course()->getCategoryStart() as $category)
-                    <a class="collapse-item" href="/report/{{$report->id}}">Indicador: {{$category->name}}</a>
+                    <a class="collapse-item" href="/report/{{$report->id}}">Indicator: {{$category->name}}</a>
                 @endforeach
               </div>
             </div>
@@ -51,7 +51,7 @@
     @if(count(Auth::user()->getStartedReports())>0)
         <hr class="sidebar-divider d-none d-md-block">
         <div class="sidebar-heading">
-            En Progreso
+            In Progress
         </div>
     @endif
 
@@ -65,7 +65,7 @@
             <div id="IN{{$report->id}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
                 @foreach($report->Course()->getCategoryProgress() as $category)
-                    <a class="collapse-item" href="/reportprogress/{{$report->id}}">Indicador: {{$category->name}}</a>
+                    <a class="collapse-item" href="/reportprogress/{{$report->id}}">Indicator: {{$category->name}}</a>
                 @endforeach
               </div>
             </div>
@@ -75,7 +75,7 @@
     @if(count(Auth::user()->getFinishReports())>0)
         <hr class="sidebar-divider d-none d-md-block">
         <div class="sidebar-heading">
-            Listos
+            Finished
         </div>
     @endif
 
@@ -89,7 +89,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             @foreach($report->Course()->getCategoryDone() as $category)
                 <h6 class="collapse-header">Indicator: {{$category->name}}</h6>
-                <a class="collapse-item" href="/finishprogress/{{$report->id}}">Indicador: {{$category->name}}</a>
+                <a class="collapse-item" href="/finishprogress/{{$report->id}}">Indicator: {{$category->name}}</a>
             @endforeach
           </div>
         </div>

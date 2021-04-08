@@ -89,21 +89,15 @@ class StartReportController extends Controller
             'pd' => 'required',
             'pp' => 'required',
             'pm' => 'required',
-            'excel' => 'required'
+            'excel' => 'required|mimes:xlsx'
         ]);
-
-        $data = Excel::toArray(new StudentImport(), $request->file('excel'));
-
-        foreach ($data[0] as $key => $value) {
-            $student = new Student;
-            $student->report_id = $report->id;
-            $student->last_name = $value[0];
-            $student->first_name = $value[1];
-            $student->score = $value[2];
-            $student->save();
-        }
-
-
+        $import = new StudentImport($report->id);
+        Excel::import($import, $request->file('excel'));
+        $request = new Request($request->all());
+        $request->merge(['excel' => $import->getRowCount()]);
+        $request->validate([
+            'excel' => 'numeric|min:2'
+        ]);
         $report->MeasurementInstrument = $request->measurement_instrument;
         $report->AssessmentMethodDetail = $request->assessment_method_detail;
         $report->MaxScore = $request->maxscore;

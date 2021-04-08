@@ -1,7 +1,10 @@
 @extends('layouts.admin')
 
 @section('main-content')
-
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <a href="{{asset('files/Score_Excel.xlsx')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Ejemplo Excel</a>
+    </div>
     <div class="row">
 
         <!-- Content Column -->
@@ -36,19 +39,19 @@
                     @endif
                     <div class="form-row">
                         <div class="col">
-                          <input type="text" name="measurement_instrument" class="form-control" placeholder="Instrumento de Medida" required>
+                          <input type="text" name="measurement_instrument" class="form-control" placeholder="Measurement Instrument" required>
                         </div>
                         <div class="col">
-                          <input type="text" name="assessment_method_detail" class="form-control" placeholder="Detalle del instrumento de evaluación" required>
+                          <input type="text" name="assessment_method_detail" class="form-control" placeholder="Assessment Method Detail" required>
                         </div>
                     </div>
                     <hr>
                     <div class="form-row">
                         <div class="col">
-                          <input type="number" name="minscore" id="min" onchange="myMin()" class="form-control" placeholder="Puntaje Minimo" required>
+                          <input type="number" name="minscore" id="min" onchange="myMin()" class="form-control" placeholder="Min Score" required>
                         </div>
                         <div class="col">
-                          <input type="number" name="maxscore" id="max" onchange="myAll()" class="form-control" placeholder="Puntaje Maximo" required>
+                          <input type="number" name="maxscore" id="max" onchange="myAll()" class="form-control" placeholder="Max Score" required>
                         </div>
                     </div>
                     <hr>
@@ -57,13 +60,13 @@
                             Level
                         </div>
                         <div class="col text-center">
-                          Minimo
+                          Min
                         </div>
                         <div class="col text-center">
-                          Maximo
+                          Max
                         </div>
                         <div class="col">
-                          Porcentajes
+                          Percentage
                         </div>
                     </div>
                     <hr>
@@ -140,11 +143,11 @@
                     </div>
                     <hr>
                     <div class="form-group">
-                      <label for="exampleFormControlFile1">Subir archivo de notas</label>
+                      <label for="exampleFormControlFile1">Upload Excel Notes File</label>
                       <input type="file" name="excel" class="form-control-file" id="field_path" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Continuar</button>
+                    <button type="submit" class="btn btn-primary">Continue</button>
                   </form>
                 </div>
             </div>
@@ -156,14 +159,14 @@
             <!-- Illustrations -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Información</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Information</h6>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>Semestre:</b> {{$course->year}}-{{$course->semester}}</li>
-                        <li class="list-group-item">Curso: {{$course->name}}</li>
-                        <li class="list-group-item">Coordinador: {{$report->User()->name()}}</li>
-                        <li class="list-group-item">Indicador: {{$report->Category()->name}} {{$report->Category()->description}}</li>
+                        <li class="list-group-item"><b>Semester:</b> {{$course->year}}-{{$course->semester}}</li>
+                        <li class="list-group-item">Course: {{$course->name}}</li>
+                        <li class="list-group-item">Coordinator: {{$report->User()->name()}}</li>
+                        <li class="list-group-item">Indicator: {{$report->Category()->name}} {{$report->Category()->description}}</li>
                     </ul>
                 </div>
             </div>
@@ -182,6 +185,7 @@
             var pp = parseInt(document.getElementById("pp").value);
             var pm = parseInt(document.getElementById("pm").value);
             var max = parseInt(document.getElementById("max").value);
+
             document.getElementById("min-b").innerHTML = min ;
             document.getElementById("max-b").innerHTML = min + ((max - min)*(pb/100));
             document.getElementById("min-d").innerHTML = min + ((max - min)*(pb/100));

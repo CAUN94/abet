@@ -81,9 +81,15 @@ class CompleteReportController extends Controller
             'results' => 'required',
             'ImproceScores' => 'required',
             'expected' => 'required',
-            'proposal' => 'required'
+            'proposal' => 'required',
+            'file' => 'required'
         ]);
-
+        if($request->hasFile('file')){
+            $file = $request->file('file');
+            $name = $report->Course()->code."-".$report->Category()->name.'.'.$file->getClientOriginalExtension();
+            $destination = public_path('/files/documents');
+            $file->move($destination,$name);
+        }
         $report->ProfessorTeam = $request->ProfessorTeam;
         $report->Result = $request->result;
         $report->PurposeMeasure = $request->purposemeasure;
@@ -91,6 +97,7 @@ class CompleteReportController extends Controller
         $report->ImproceScores = $request->ImproceScores;
         $report->Expected = $request->expected;
         $report->Proposal = $request->proposal;
+        $report->file = $name;
         $report->save();
         return redirect('/finishprogress/'.$report->id);
     }

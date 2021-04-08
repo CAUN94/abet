@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPFieldsToReportTable extends Migration
+class AddToReportTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class AddPFieldsToReportTable extends Migration
     public function up()
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->integer('pb')->nullable()->default('20');
-            $table->integer('pd')->nullable()->default('30');
-            $table->integer('pp')->nullable()->default('30');
-            $table->integer('pm')->nullable()->default('20');
+            $table->string('file')->nullable();
         });
     }
 
@@ -29,10 +26,7 @@ class AddPFieldsToReportTable extends Migration
     public function down()
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->dropColumn('pb');
-            $table->dropColumn('pd');
-            $table->dropColumn('pp');
-            $table->dropColumn('pm');
+            $table->dropColumn('file');
         });
     }
 }

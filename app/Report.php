@@ -53,43 +53,47 @@ class Report extends Model
         return $this->hasMany('App\Student')->count();
     }
 
-    public function Mastery($border, $percentage ,$total)
+    public function Mastery()
     {
-        if($total == 0)
+        if($this->Students() == 0)
             return 0;
-        $min_score = ($border[1]*$percentage[0]/100) + ($border[1]*$percentage[1]/100) + ($border[1]*$percentage[2]/100);
-        $max_score = ($border[1]*$percentage[0]/100) + ($border[1]*$percentage[1]/100) + ($border[1]*$percentage[2]/100) + ($border[1]*$percentage[3]/100);
+        $diff = $this->MaxScore - $this->MinScore;
+        $min_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $diff*$this->pp/100 + $this->MinScore;
+        $max_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $diff*$this->pp/100 + $diff*$this->pm/100 + $this->MinScore;
         $count = $this->hasMany('App\Student')->whereBetween('score', [$min_score, $max_score])->count();
-        return [$count,round($count*100/$total)];
+        return [$count,round($count*100/$this->Students())];
     }
 
-    public function Proficient($border, $percentage ,$total)
+    public function Proficient()
     {
-        if($total == 0)
+        if($this->Students() == 0)
             return 0;
-        $min_score = ($border[1]*$percentage[0]/100) + ($border[1]*$percentage[1]/100);
-        $max_score = ($border[1]*$percentage[0]/100) + ($border[1]*$percentage[1]/100) + ($border[1]*$percentage[2]/100);
+        $diff = $this->MaxScore - $this->MinScore;
+        $min_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $this->MinScore;
+        $max_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $diff*$this->pp/100 + $this->MinScore;
         $count = $this->hasMany('App\Student')->whereBetween('score', [$min_score, $max_score])->count();
-        return [$count,round($count*100/$total)];
+        return [$count,round($count*100/$this->Students())];
     }
 
-    public function Development($border, $percentage ,$total)
+    public function Development()
     {
-        if($total == 0)
+        if($this->Students() == 0)
             return 0;
-        $min_score = ($border[1]*$percentage[0]/100);
-        $max_score = ($border[1]*$percentage[0]/100) + ($border[1]*$percentage[1]/100);
+        $diff = $this->MaxScore - $this->MinScore;
+        $min_score = $diff*$this->pb/100 + $this->MinScore;
+        $max_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $this->MinScore;
         $count = $this->hasMany('App\Student')->whereBetween('score', [$min_score, $max_score])->count();
-        return [$count,round($count*100/$total)];
+        return [$count,round($count*100/$this->Students())];
     }
 
-    public function Beginner($border, $percentage ,$total)
+    public function Beginner()
     {
-        if($total == 0)
+        if($this->Students() == 0)
             return 0;
-        $min_score = ($border[0]*$percentage[0]/100);
-        $max_score = ($border[1]*$percentage[0]/100);
+        $diff = $this->MaxScore - $this->MinScore;
+        $min_score = $this->MinScore;
+        $max_score = $diff*$this->pb/100 + $this->MinScore;
         $count = $this->hasMany('App\Student')->whereBetween('score', [$min_score, $max_score])->count();
-        return [$count,round($count*100/$total)];
+        return [$count,round($count*100/$this->Students())];
     }
 }
