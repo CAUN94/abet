@@ -32,6 +32,7 @@ Route::get('/reportprogress/{report}', 'CompleteReportController@edit');
 Route::patch('/reportprogress/{report}', 'CompleteReportController@update');
 
 Route::get('/finishprogress/{report}', 'ReportController@show');
+Route::get('/restart/{report}', 'ReportController@destroy');
 
 Auth::routes();
 

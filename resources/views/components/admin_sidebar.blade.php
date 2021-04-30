@@ -10,8 +10,6 @@
 	    </a>
 	    <div id="Abstract" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 	      <div class="bg-white py-2 collapse-inner rounded">
-			<a class="collapse-item" href="#">Reports Status</a>
-			<a class="collapse-item" href="#">Send Mail</a>
 			<a class="collapse-item" href="/admin">See Course Resume</a>
 	      </div>
 	    </div>

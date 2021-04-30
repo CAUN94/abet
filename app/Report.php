@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Category;
+use App\Indicator;
 use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
@@ -46,6 +48,23 @@ class Report extends Model
     public function Category()
     {
     	return $this->belongsTo('App\Category')->first();
+    }
+
+    public function getCategory()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
+    public function Indicator()
+    {
+        return $this->belongsToMany(
+            Category::class,
+            Indicator::class,
+            'id',
+            'category_id',
+            'indicator_id',
+            'id'
+        );
     }
 
     public function Students()
@@ -96,4 +115,4 @@ class Report extends Model
         $count = $this->hasMany('App\Student')->whereBetween('score', [$min_score, $max_score])->count();
         return [$count,round($count*100/$this->Students())];
     }
-}
+    }

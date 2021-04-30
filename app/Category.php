@@ -11,6 +11,11 @@ class Category extends Model
 		return $this->belongsTo('App\Indicator')->first();
 	}
 
+    public function getIndicator()
+    {
+        return $this->belongsTo('App\Indicator');
+    }
+
 	public function getReports()
     {
         return $this->hasMany('App\Report');

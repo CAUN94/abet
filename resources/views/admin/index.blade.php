@@ -48,7 +48,7 @@
         <!-- Illustrations -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Reportes Status {{'App\Report'::CountAllReports()}}</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Reports Status {{'App\Report'::CountAllReports()}}</h6>
             </div>
             <div class="card-body">
                 <div class="alert alert-danger" role="alert">
@@ -57,6 +57,65 @@
                 <div class="alert alert-success" role="alert">
                     Complete Reports: {{'App\Report'::getComplete()}}
                 </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Summary</h6>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Beginner: {{$summary['beginner']}}</li>
+                    <li>Development: {{$summary['development']}}</li>
+                    <li>Proficient: {{$summary['proficient']}}</li>
+                    <li>Mastery: {{$summary['mastery']}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Indicators</h6>
+            </div>
+            <div class="card-body">
+                <div id="accordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Compete Indicators
+                        </button>
+                      </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="card-body">
+                        @foreach ($complete as $value)
+                            <ul class="list-group">
+                              <li class="list-group-item">{{$value->name}}. {{$value->description}}</li>
+                            </ul>
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Incomplete Indicators
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                      <div class="card-body">
+                         @foreach ($incomplete as $value)
+                            <ul class="list-group">
+                              <li class="list-group-item">{{$value->name}}. {{$value->description}}</li>
+                            </ul>
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
             </div>
         </div>
 

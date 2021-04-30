@@ -51,61 +51,65 @@
                             <p><strong>Improce Scores:</strong><br>{{$report->ImproceScores}}</p>
                         </div>
                     </div>
-                    <?php $data = [$report->MinScore,$report->MaxScore,$report->Students()]; ?>
 
                     <div class="col mr-2 mt-3">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mastery</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mastery {{$report->Mastery()[0]}}</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$report->Mastery($data[0],$data[1],$data[2])}}%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$report->Mastery()[1]}}%</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: {{$report->Mastery($data[0],$data[1],$data[2])}}%" aria-valuenow="24"></div>
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: {{$report->Mastery()[1]}}%" aria-valuenow="24"></div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="col mr-2 mt-3">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Proficient</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Proficient {{$report->Proficient()[0]}}</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$report->Proficient($data[0],$data[1],$data[2])}}%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$report->Proficient()[1]}}%</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: {{$report->Proficient($data[0],$data[1],$data[2])}}%" aria-valuenow="27" aria-valuemin="0" aria-valuemax="30"></div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{$report->Proficient()[1]}}%" aria-valuenow="27" aria-valuemin="0" aria-valuemax="30"></div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="col mr-2 mt-3">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Development</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Development {{$report->Development()[0]}}</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$report->Development($data[0],$data[1],$data[2])}}%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$report->Development()[1]}}%</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{$report->Development($data[0],$data[1],$data[2])}}%"></div>
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{$report->Development()[1]}}%"></div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="col mr-2 mt-3">
-                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Beginner</div>
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Beginner {{$report->Beginner()[0]}}</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$report->Beginner($data[0],$data[1],$data[2])}}%</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$report->Beginner()[1]}}%</div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{$report->Beginner($data[0],$data[1],$data[2])}}%"></div>
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{$report->Beginner()[1]}}%"></div>
                           </div>
                         </div>
                       </div>
                     </div>
-
+                    <div class="mt-2">
+                      <a href="/files/documents/{{$report->file}}" class="btn btn-primary" download><i class="fas fa-download fa-sm text-white-50"></i> Download Document</a>
+                    </div>
+                    <div class="mt-2">
+                      <a href="/restart/{{$report->id}}" class="btn btn-primary">Restart Report</a>
+                    </div>
                 </div>
             </div>
 
@@ -116,7 +120,7 @@
             <!-- Illustrations -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Info</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Information</h6>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">

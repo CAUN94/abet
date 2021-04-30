@@ -15,4 +15,17 @@ class Indicator extends Model
     {
         return $this->belongsToMany('App\Course', 'course_indicator')->get();
     }
+
+    public function Reports()
+    {
+        return $this->hasManyThrough(
+            Category::class,
+            Indicator::class,
+            'id',
+            'indicator_id',
+            'category_id',
+            'id'
+        );
+    }
+
 }

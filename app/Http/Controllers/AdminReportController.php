@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Imports\StudentImport;
 use App\Report;
@@ -26,8 +27,36 @@ class AdminReportController extends Controller
     public function index()
     {
         if(Auth::user()->isAdmin()){
-            $reports = Report::orderby('course_id')->orderBy('category_id')->get();
-            return view('admin.index',compact('reports'));
+
+            $reports = Report::orderby('updated_at','desc')->orderBy('file','desc')->orderBy('pb','desc')->get();
+            $indicators = Category::with('getReports')->orderby('name')->groupby('description')->get();
+            $complete = [];
+            $incomplete = [];
+            $summary = [];
+            $summary['beginner'] = 0;
+            $summary['development'] = 0;
+            $summary['proficient'] = 0;
+            $summary['mastery'] = 0;
+            foreach ($reports as $key => $report) {
+                if($report->minScore == Null){
+                    $summary['beginner'] += $report->Beginner()[0];
+                    $summary['development'] += $report->Development()[0];
+                    $summary['proficient'] += $report->Proficient()[0];
+                    $summary['mastery'] += $report->Mastery()[0];
+                }
+            }
+            foreach ($indicators as $key => $indicator) {
+                foreach ($indicator->getReports as $key => $value) {
+                    if($key + 1 == count($indicator->getReports) and $value->file == Null){
+                        $incomplete[] = $indicator;
+                    }
+                    if ($value->file != Null){
+                        $complete[] = $indicator;
+                        break;
+                    }
+                 }
+            }
+            return view('admin.index',compact('reports','complete','incomplete','summary'));
         }
 
         return abort(404);;
@@ -62,7 +91,10 @@ class AdminReportController extends Controller
      */
     public function show(Report $report)
     {
-        return view('admin.show',compact('report'));
+        if(Auth::user()->isAdmin()){
+            return view('admin.show',compact('report'));
+        }
+        abort(404);
     }
 
     /**
