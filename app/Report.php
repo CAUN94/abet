@@ -75,7 +75,7 @@ class Report extends Model
     public function Mastery()
     {
         if($this->Students() == 0)
-            return 0;
+            return [0,0];
         $diff = $this->MaxScore - $this->MinScore;
         $min_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $diff*$this->pp/100 + $this->MinScore;
         $max_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $diff*$this->pp/100 + $diff*$this->pm/100 + $this->MinScore;
@@ -86,7 +86,7 @@ class Report extends Model
     public function Proficient()
     {
         if($this->Students() == 0)
-            return 0;
+            return [0,0];
         $diff = $this->MaxScore - $this->MinScore;
         $min_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $this->MinScore;
         $max_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $diff*$this->pp/100 + $this->MinScore;
@@ -97,7 +97,7 @@ class Report extends Model
     public function Development()
     {
         if($this->Students() == 0)
-            return 0;
+            return [0,0];
         $diff = $this->MaxScore - $this->MinScore;
         $min_score = $diff*$this->pb/100 + $this->MinScore;
         $max_score = $diff*$this->pb/100 + $diff*$this->pd/100 + $this->MinScore;
