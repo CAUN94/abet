@@ -39,7 +39,6 @@ class AdminReportController extends Controller
             $summary['mastery'] = 0;
             foreach ($reports as $key => $report) {
                 if($report->minScore == Null){
-                    print((int) $report->Beginner()[0]);
                     $summary['beginner'] = $summary['beginner'] +  $report->Beginner()[0];
                     $summary['development'] = $summary['development'] + $report->Development()[0];
                     $summary['proficient'] = $summary['proficient'] + $report->Proficient()[0];

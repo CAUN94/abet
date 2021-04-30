@@ -108,7 +108,7 @@ class Report extends Model
     public function Beginner()
     {
         if($this->Students() == 0)
-            return 0;
+            return [0,0];
         $diff = $this->MaxScore - $this->MinScore;
         $min_score = $this->MinScore;
         $max_score = $diff*$this->pb/100 + $this->MinScore;
