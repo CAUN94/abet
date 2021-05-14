@@ -76,5 +76,34 @@
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.js') }}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+    <script type="text/javascript">
+        function myFunction() {
+            var input, filter, div, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("myDiv");
+            report = div.getElementsByClassName("report");
+            console.log(report[0].getElementsByClassName("report-div"))
+            for (i = 0; i < report.length; i++) {
+                a = report[i].getElementsByClassName("report-diva")[0];
+                txtaValue = a.textContent || a.innerText;
+                b = report[i].getElementsByClassName("report-divb")[0];
+                txtbValue = b.textContent || b.innerText;
+                c = report[i].getElementsByClassName("report-divc")[0];
+                txtcValue = c.textContent || c.innerText;
+                d = report[i].getElementsByClassName("report-divd")[0];
+                txtdValue = d.textContent || d.innerText;
+                if (txtaValue.toUpperCase().indexOf(filter) > -1 ||
+                    txtbValue.toUpperCase().indexOf(filter) > -1 ||
+                    txtcValue.toUpperCase().indexOf(filter) > -1 ||
+                    txtdValue.toUpperCase().indexOf(filter) > -1
+                    ) {
+                    report[i].style.display = "";
+                } else {
+                    report[i].style.display = "none";
+                }
+            }
+        }
+        </script>
 </body>
 </html>

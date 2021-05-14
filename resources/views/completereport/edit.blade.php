@@ -80,7 +80,7 @@
                     </div>
                     <hr>
                     <div class="form-group">
-                      <label for="exampleFormControlFile1">Upload Example</label>
+                      <label for="exampleFormControlFile1">Upload Evidence</label>
                       <input type="file" name="file" class="form-control-file" id="field_path" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

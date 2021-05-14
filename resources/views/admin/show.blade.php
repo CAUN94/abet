@@ -105,7 +105,7 @@
                       </div>
                     </div>
                     <div class="mt-2">
-                      <a href="/files/documents/{{$report->file}}" class="btn btn-primary" download><i class="fas fa-download fa-sm text-white-50"></i> Download Document</a>
+                      <a href="/files/documents/{{$report->file}}" class="btn btn-primary" download><i class="fas fa-download fa-sm text-white-50"></i> Download Evidence</a>
                     </div>
                     <div class="mt-2">
                       <a href="/restart/{{$report->id}}" class="btn btn-primary">Restart Report</a>

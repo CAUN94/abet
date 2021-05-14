@@ -13,18 +13,20 @@
                 <h6 class="m-0 font-weight-bold text-primary">Courses</h6>
             </div>
             <div class="card-body">
-                <div class="row">
+                <div class="row" id="myDiv">
                     <!-- Nav Item - Pages Collapse Menu -->
                     @foreach($reports as $report)
-                            <div class="col-xl-6 col-md-6 mb-4">
+                            <div class="col-xl-6 col-md-6 mb-4 report">
                               <div class="card border-left-{{$report->status()}} shadow h-100 py-2">
                                 <a href="/admin/{{$report->id}}">
                                     <div class="card-body">
                                       <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                          <div class="text-xs font-weight-bold text-{{$report->status()}} text-uppercase mb-1">{{$report->Course()->code}}</div>
-                                          <div class="h5 mb-0 font-weight-bold text-gray-800">{{$report->Course()->name}}</div>
-                                          <div class="text-xs mt-2 mb-0 font-weight-bold text-gray-800">
+                                          <div class="text-xs report-diva font-weight-bold text-{{$report->status()}} text-uppercase mb-1">{{$report->Course()->code}}</div>
+                                          <?php $user = App\User::find($report->user_id) ?>
+                                          <small class="report-divb">Coordinator: {{$user->first_name}} {{$user->last_name}}</small>
+                                          <div class="h5 mb-0 font-weight-bold text-gray-800 report-divc">{{$report->Course()->name}}</div>
+                                          <div class="text-xs mt-2 mb-0 font-weight-bold text-gray-800 report-divd">
                                             {{$report->Category()->name}}
                                             {{$report->Category()->description}}
                                         </div>

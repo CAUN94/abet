@@ -6,6 +6,7 @@ use App\Report;
 use App\Student;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
@@ -86,25 +87,31 @@ class ReportController extends Controller
      */
     public function destroy($reportId)
     {
-        Student::where('report_id',$reportId)->delete();
         $report = Report::find($reportId);
-        $report->MeasurementInstrument = Null;
-        $report->AssessmentMethodDetail = Null;
-        $report->MinScore = Null;
-        $report->MaxScore = Null;
-        $report->ProfessorTeam = Null;
-        $report->Result = Null;
-        $report->PurposeMeasure = Null;
-        $report->Results = Null;
-        $report->ImproceScores = Null;
-        $report->Expected = Null;
-        $report->Proposal = Null;
-        $report->file = Null;
-        $report->pb = Null;
-        $report->pd = Null;
-        $report->pp = Null;
-        $report->pm = Null;
-        $report->save();
-        return redirect('/report/'.$reportId);
+        if (Auth::id() == $report->user_id or Auth::user()->isAdmin()){
+            Student::where('report_id',$reportId)->delete();
+            $report = Report::find($reportId);
+            $report->MeasurementInstrument = Null;
+            $report->AssessmentMethodDetail = Null;
+            $report->MinScore = Null;
+            $report->MaxScore = Null;
+            $report->ProfessorTeam = Null;
+            $report->Result = Null;
+            $report->PurposeMeasure = Null;
+            $report->Results = Null;
+            $report->ImproceScores = Null;
+            $report->Expected = Null;
+            $report->Proposal = Null;
+            $report->file = Null;
+            $report->pb = Null;
+            $report->pd = Null;
+            $report->pp = Null;
+            $report->pm = Null;
+            $report->save();
+            return redirect('/report/'.$reportId);
+        }
+
+        return back();
+
     }
 }
