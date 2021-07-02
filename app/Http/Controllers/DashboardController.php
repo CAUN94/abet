@@ -8,6 +8,7 @@ use App\Indicator;
 use App\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class DashboardController extends Controller
 {
@@ -42,5 +43,11 @@ class DashboardController extends Controller
             $indicator = Indicator::whereNotNull('id')->orderby('name','asc')->pluck('name');
             return view('admin.dashboard',compact('summary','reports','indicator'));
         }
+    }
+
+    public function pdf($id){
+        $report = Report::findorfail($id);
+        $pdf = PDF::loadView('layouts.pdf',compact('report'));
+        return $pdf->stream('youjustbetter.pdf');
     }
 }
