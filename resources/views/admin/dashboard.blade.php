@@ -35,7 +35,7 @@
     }
     .block {
         display: block;
-        height: 100px;
+        height: 50px;
         color: #fff;
         font-size: .75em;
         float: left;
@@ -126,7 +126,6 @@
                             <div class="row" style="flex-wrap: nowrap">
                                 <span style="width: 20%; display: inline-block;">{{$report->Course()->code}}<br>
                                     {{$report->Course()->name}}<br>
-                                    <small>{{$report->Course()->getCategory()->description}}</small>
                                 </span>
                                 <br>
 
