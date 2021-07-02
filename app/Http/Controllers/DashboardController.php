@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
         if(Auth::user()->isAdmin()){
-            $reports = Report::whereNotNull('pm')->groupby('course_id')->get();
+            $reports = Report::whereNotNull('pm')->get();
             $complete = [];
             $incomplete = [];
             $summary = [];
