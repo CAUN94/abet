@@ -102,7 +102,7 @@
 <div class="row">
 
     <!-- Content Column -->
-    <div class="col-lg-12 mb-4">
+    <div class="col-lg-8 mb-4">
         <!-- Project Card Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -110,11 +110,26 @@
             </div>
             <div class="card-body">
                 <div class="row" id="myDiv">
+
                     <figure style="width:100%">
+                        <div class="x-axis">
+                            <h3>Levels</h3>
+                            <ul class="legend">
+                              <li>Beginning</li>
+                              <li>Development</li>
+                              <li>Proficient</li>
+                              <li>Mastery</li>
+                            </ul>
+                        </div>
                       <div class="graphic" style="width:100%">
                         @foreach($reports as $report)
                             <div class="row" style="flex-wrap: nowrap">
-                                <span style="width: 20%; display: inline-block;">{{$report->Course()->code}}<br>{{$report->Course()->name}}</span>
+                                <span style="width: 20%; display: inline-block;">{{$report->Course()->code}}<br>
+                                    {{$report->Course()->name}}<br>
+                                    <small>{{$report->Course()->getCategory()->description}}</small>
+                                </span>
+                                <br>
+
                                 <div class="chart" style="width:80%; display: inline-block;">
                                     <span class="block" title="Beginning">
                                        <span class="value">{{$report->pb}}%</span>
@@ -133,19 +148,21 @@
                             </div>
                         @endforeach
                       </div>
-
-                      <div class="x-axis">
-                        <h3>Levels</h3>
-                        <ul class="legend">
-                          <li>Beginning</li>
-                          <li>Development</li>
-                          <li>Proficient</li>
-                          <li>Mastery</li>
-                        </ul>
-                      </div>
-
                     </figure>
                 </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-4 mb-4">
+        <!-- Project Card Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Indicators</h6>
+            </div>
+            <div class="card-body">
+                <canvas id="chart-line" width="100%" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
             </div>
         </div>
 
@@ -162,5 +179,34 @@
     });
 
     $('.block').tooltip();
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+<script type="text/javascript">indicator = {!! json_encode($indicator, JSON_HEX_TAG) !!}</script>
+
+<script>
+    $(document).ready(function() {
+        var ctx = $("#chart-line");
+        var myLineChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: indicator,
+                datasets: [{
+                    data: [0,40,50,90,60,70,30,40,70,90,20,43],
+                    label: "2020-1",
+                    borderColor: "#458af7",
+                    backgroundColor: '#458af7',
+                    fill: false
+                },
+                {
+                    data: [0,90,90,100,80,100,50,60,70,80,10,59],
+                    label: "2020-2",
+                    borderColor: "#3cba9f",
+                    backgroundColor: '#3cba9f',
+                    fill: false,
+                }
+                ]
+            },
+        });
+    });
 </script>
 @endsection

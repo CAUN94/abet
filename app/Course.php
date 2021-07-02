@@ -14,7 +14,7 @@ class Course extends Model
     public function getCategory()
     {
         return $this->belongsToMany('App\Category','reports','course_id','category_id')
-            ->get();
+            ->first();
     }
 
     public function getCategoryStart()

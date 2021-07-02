@@ -12,6 +12,7 @@
 	    	<div class="bg-white py-2 collapse-inner rounded">
 					<a class="collapse-item" href="/dashboard">Dashboard</a>
 					<a class="collapse-item" href="/admin">See Course Resume</a>
+					<a class="collapse-item" href="/admin">Download Reports</a>
 	      </div>
 	    </div>
      </li>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Course;
+use App\Indicator;
 use App\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +39,8 @@ class DashboardController extends Controller
             $summary['development'] = $summary['development']*100/$report->count();
             $summary['proficient'] = $summary['proficient']*100/$report->count();
             $summary['mastery'] = $summary['mastery']*100/$report->count();
-            return view('admin.dashboard',compact('summary','reports'));
+            $indicator = Indicator::whereNotNull('id')->orderby('name','asc')->pluck('name');
+            return view('admin.dashboard',compact('summary','reports','indicator'));
         }
     }
 }
