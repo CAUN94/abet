@@ -28,7 +28,7 @@ class AdminReportController extends Controller
     {
         if(Auth::user()->isAdmin()){
 
-            $reports = Report::orderby('updated_at','desc')->orderBy('file','desc')->orderBy('pb','desc')->get();
+            $reports = Report::orderby('file','asc')->get();
             $indicators = Category::with('getReports')->orderby('name')->groupby('categories.id')->get();
 
             $complete = [];

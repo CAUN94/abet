@@ -23,6 +23,7 @@
                                       <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                           <div class="text-xs report-diva font-weight-bold text-{{$report->status()}} text-uppercase mb-1">{{$report->Course()->code}}</div>
+                                          <div class="text-xs report-diva font-weight-bold text-uppercase mb-1"> Periodo: {{$report->Course()->year}}-{{$report->Course()->semester}}</div>
                                           <?php $user = App\User::find($report->user_id) ?>
                                           <small class="report-divb">Coordinator: {{$user->first_name}} {{$user->last_name}}</small>
                                           <div class="h5 mb-0 font-weight-bold text-gray-800 report-divc">{{$report->Course()->name}}</div>

@@ -9,8 +9,9 @@
 	      <span>Summary</span>
 	    </a>
 	    <div id="Abstract" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-	      <div class="bg-white py-2 collapse-inner rounded">
-			<a class="collapse-item" href="/admin">See Course Resume</a>
+	    	<div class="bg-white py-2 collapse-inner rounded">
+					<a class="collapse-item" href="/dashboard">Dashboard</a>
+					<a class="collapse-item" href="/admin">See Course Resume</a>
 	      </div>
 	    </div>
      </li>
