@@ -44,10 +44,39 @@ class DashboardController extends Controller
             return view('admin.dashboard',compact('summary','reports','indicator'));
         }
     }
+    public function show_pdf(){
+        if(Auth::user()->isAdmin()){
+            $reports = Report::whereNotNull('pm')->get();
+            $complete = [];
+            $incomplete = [];
+            $summary = [];
+            $summary['beginner'] = 0;
+            $summary['development'] = 0;
+            $summary['proficient'] = 0;
+            $summary['mastery'] = 0;
+            foreach ($reports as $key => $report) {
+                if($report->minScore == Null){
+                    $summary['beginner'] += $report->Beginner()[0];
+                    $summary['development'] += $report->Development()[0];
+                    $summary['proficient'] += $report->Proficient()[0];
+                    $summary['mastery'] += $report->Mastery()[0];
+                }
+            }
+            $summary['beginner'] = $summary['beginner']*100/$report->count();
+            $summary['development'] = $summary['development']*100/$report->count();
+            $summary['proficient'] = $summary['proficient']*100/$report->count();
+            $summary['mastery'] = $summary['mastery']*100/$report->count();
+            $indicator = Indicator::whereNotNull('id')->orderby('name','asc')->pluck('name');
+            return view('admin.pdf',compact('summary','reports','indicator'));
+        }
+    }
 
     public function pdf($id){
         $report = Report::findorfail($id);
-        $pdf = PDF::loadView('layouts.pdf',compact('report'));
-        return $pdf->stream('youjustbetter.pdf');
+        $course = $report->Course();
+        $category = $report->Category();
+        $pdf = PDF::loadView('layouts.pdf',compact('report','course','category'));
+        $name = $course->name."-".$course->name."-".$course->year."-".$course->semester;
+        return $pdf->download($name);
     }
 }

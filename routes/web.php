@@ -26,6 +26,7 @@ Route::patch('/admin/{report}', 'AdminReportController@update');
 Route::delete('/admin/{report})', 'AdminReportController@delete');
 
 Route::get('/dashboard', 'DashboardController@index');
+// Route::get('/admin/pdf', 'DashboardController@pdf');
 Route::get('/admin/pdf/{id}', 'DashboardController@pdf');
 
 Route::get('/report/{report}', 'StartReportController@edit');
